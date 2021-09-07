@@ -21,6 +21,22 @@ public class Liste {
         return head;
     }
 
+    public Node insertFromTail(String s) {
+        Node n = new Node(s);
+        if (isEmpty()) {
+            head = n;
+            tail = n;
+            return tail;
+        }
+
+        tail.next = n;
+        n.previous = head;
+
+        tail = n;
+
+        return tail;
+    }
+
     public boolean isEmpty() {
         if (head == null)
             return true;
@@ -36,5 +52,31 @@ public class Liste {
         }
 
         return output;
+    }
+
+    public String printFromTail() {
+        String output = "";
+        Node n = tail;
+        while(n != null){
+            output += n.data;
+            n = n.previous;
+        }
+
+        return output;
+    }
+
+    public String removeFromHead() {
+        if(!isEmpty()){
+            if(head == tail){
+                return head.data;
+            }
+            Node n = head;
+
+            head.next.previous = null;
+            head = head.next;
+
+            return n.data;
+        }
+        return null;
     }
 }
