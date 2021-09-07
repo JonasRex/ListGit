@@ -26,4 +26,15 @@ public class Liste {
             return true;
         return false;
     }
+
+    public String printFromHead() {
+        String output = "";
+        Node n = head;
+        while(n != null){
+            output += n.data;
+            n = n.next;
+        }
+
+        return output;
+    }
 }
