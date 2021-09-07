@@ -24,7 +24,6 @@ public class Liste {
     public boolean isEmpty() {
         if (head == null)
             return true;
-
         return false;
     }
 }
