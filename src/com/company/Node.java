@@ -5,7 +5,6 @@ public class Node {
     Node next = null;
 
     String data;
-    String name;
 
 
 }
