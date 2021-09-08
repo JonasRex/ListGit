@@ -5,8 +5,7 @@ public class Liste {
     Node head = null;
     Node tail = null;
 
-    public Node insertFromHead(String s) {
-        Node n = new Node(s);
+    public Node insertFromHead(Node n) {
         if (isEmpty()) {
             head = n;
             tail = n;
@@ -65,18 +64,22 @@ public class Liste {
         return output;
     }
 
-    public String removeFromHead() {
+    public Node removeFromHead() {
+        Node node = new Node("");
         if(!isEmpty()){
             if(head == tail){
-                return head.data;
+                node = head;
+                head = null;
+                tail = null;
+                return node;
             }
-            Node n = head;
+            node = head;
 
             head.next.previous = null;
             head = head.next;
 
-            return n.data;
+            return node;
         }
-        return null;
+        return node;
     }
 }

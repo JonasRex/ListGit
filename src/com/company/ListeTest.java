@@ -1,5 +1,6 @@
 package com.company;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,12 +8,28 @@ import static org.junit.jupiter.api.Assertions.*;
 class ListeTest {
 
     Liste liste = new Liste();
+    Liste listeTom = new Liste();
+
+    @BeforeEach
+    void setUp() {
+        Node node0 = new Node("0");
+        Node node1 = new Node("1");
+        Node node2 = new Node("2");
+        Node node3 = new Node("3");
+
+        liste.insertFromHead(node0);
+        liste.insertFromHead(node1);
+        liste.insertFromHead(node2);
+        liste.insertFromHead(node3);
+    }
+
+
 
     @org.junit.jupiter.api.Test
     void insertFromHead() {
 
-        assertEquals("Viktor", liste.insertFromHead("Viktor").data);
-        assertEquals("Christian", liste.insertFromHead("Christian").data);
+        assertEquals("Viktor", liste.insertFromHead(new Node("Viktor")).data);
+        assertEquals("Christian", liste.insertFromHead(new Node("Christian")).data);
     }
 
     @org.junit.jupiter.api.Test
@@ -25,37 +42,31 @@ class ListeTest {
     @org.junit.jupiter.api.Test
     void isEmpty() {
         assertEquals(true, liste.isEmpty());
-        liste.insertFromHead("Viktor");
+        liste.insertFromHead(new Node("Viktor"));
         assertEquals(false, liste.isEmpty());
     }
 
     @Test
     void printListFromHead() {
-        liste.insertFromHead("1");
-        liste.insertFromHead("2");
-        liste.insertFromHead("3");
-        assertEquals("321", liste.printFromHead());
+
+        assertEquals("3210", liste.printFromHead());
     }
 
     @Test
     void printListFromTail() {
-        liste.insertFromHead("1");
-        liste.insertFromHead("2");
-        liste.insertFromHead("3");
-        assertEquals("123", liste.printFromTail());
+        assertEquals("0123", liste.printFromTail());
     }
 
     @Test
     void removeFromHeadTest() {
-
-
-        liste.insertFromHead("1");
-        liste.insertFromHead("2");
-        liste.insertFromHead("3");
-
-        assertEquals("3", liste.removeFromHead());
-        assertEquals("21",liste.printFromHead());
+        assertEquals("3", liste.removeFromHead().data);
+        assertEquals("210",liste.printFromHead());
+//        Node node = new Node("");
+//
+//        assertEquals(node.data, listeTom.removeFromHead().data);
+//
+//        Node testNode = new Node("4");
+//        liste.insertFromHead(testNode);
+//        assertEquals(testNode, listeTom.removeFromHead());
     }
-
-
 }
