@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ListeTest {
 
     Liste liste = new Liste();
-    Liste listeTom = new Liste();
+    Liste tomListe = new Liste();
 
     @BeforeEach
     void setUp() {
@@ -42,32 +42,33 @@ class ListeTest {
     @org.junit.jupiter.api.Test
     void insertFromTail() {
 
-        assertEquals("Viktor", liste.insertFromTail("Viktor").data);
-        assertEquals("Christian", liste.insertFromTail("Christian").data);
+        assertEquals("Viktor", liste.insertFromTail(new Node("Viktor")).data);
+        assertEquals("Christian", liste.insertFromTail(new Node("Christian")).data);
     }
 
     @org.junit.jupiter.api.Test
     void isEmpty() {
-        assertEquals(true, liste.isEmpty());
-        liste.insertFromHead(new Node("Viktor"));
-        assertEquals(false, liste.isEmpty());
+
+        assertEquals(true, tomListe.isEmpty());
+        tomListe.insertFromHead(new Node("Viktor"));
+        assertEquals(false, tomListe.isEmpty());
     }
 
     @Test
     void printListFromHead() {
 
-        assertEquals("3210", liste.printFromHead());
+        assertEquals("76543210", liste.printFromHead());
     }
 
     @Test
     void printListFromTail() {
-        assertEquals("0123", liste.printFromTail());
+        assertEquals("01234567", liste.printFromTail());
     }
 
     @Test
     void removeFromHeadTest() {
-        assertEquals("3", liste.removeFromHead().data);
-        assertEquals("210", liste.printFromHead());
+        assertEquals("7", liste.removeFromHead().data);
+        assertEquals("6543210", liste.printFromHead());
 //        Node node = new Node("");
 //
 //        assertEquals(node.data, listeTom.removeFromHead().data);
@@ -90,9 +91,20 @@ class ListeTest {
     }
 
     @Test
-    void insertNode() {
+    void insertNodeAfterNodeTest() {
         System.out.println(liste.printFromHead());
-        assertEquals("4", liste.insertNodeToList(liste.findNodeByData("5"), new Node("8")).data);
+        assertEquals("8", liste.insertNodeAfterNode(liste.findNodeByData("0"), new Node("8")).data);
+        System.out.println(liste.printFromHead());
+        assertEquals("9", liste.insertNodeAfterNode(liste.findNodeByData("4"), new Node("9")).data);
+        System.out.println(liste.printFromHead());
+    }
+
+    @Test
+    void insertNodeBeforeNodeTest() {
+        System.out.println(liste.printFromHead());
+        assertEquals("8", liste.insertNodeBeforeNode(liste.findNodeByData("7"), new Node("8")).data);
+        System.out.println(liste.printFromHead());
+        assertEquals("9", liste.insertNodeBeforeNode(liste.findNodeByData("4"), new Node("9")).data);
         System.out.println(liste.printFromHead());
     }
 }

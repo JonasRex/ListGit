@@ -20,8 +20,7 @@ public class Liste {
         return head;
     }
 
-    public Node insertFromTail(String s) {
-        Node n = new Node(s);
+    public Node insertFromTail(Node n) {
         if (isEmpty()) {
             head = n;
             tail = n;
@@ -37,9 +36,7 @@ public class Liste {
     }
 
     public boolean isEmpty() {
-        if (head == null)
-            return true;
-        return false;
+        return head == null;
     }
 
     public String printFromHead() {
@@ -113,7 +110,7 @@ public class Liste {
     public Node findNodeByData(String s) {
         Node n = head;
         while (n != null) {
-            if(n.data == s){
+            if(n.data.equals(s)){
                 return n;
             }
             n = n.next;
@@ -122,7 +119,6 @@ public class Liste {
     }
 
     public Node removeNodeFromList(Node n) {
-        Node removedNode = n;
         if(n == head){
             return removeFromHead();
         }
@@ -132,10 +128,34 @@ public class Liste {
 
         n.previous.next = n.next;
         n.next.previous = n.previous;
-        return removedNode;
+        return n;
     }
 
-    public Node insertNodeToList(Node oldNode, Node newNode) {
+    public Node insertNodeAfterNode(Node oldNode, Node newNode) {
+        if(oldNode == tail)
+            return insertFromTail(newNode);
 
+        newNode.previous = oldNode;
+        newNode.next = oldNode.next;
+
+        oldNode.next.previous = newNode;
+        oldNode.next = newNode;
+
+
+        return newNode;
+    }
+
+    public Node insertNodeBeforeNode(Node oldNode, Node newNode) {
+        if(oldNode == head)
+            return insertFromHead(newNode);
+
+        newNode.next = oldNode;
+        newNode.previous = oldNode.previous;
+
+        oldNode.previous.next = newNode;
+        oldNode.previous = newNode;
+
+
+        return newNode;
     }
 }
