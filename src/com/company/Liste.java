@@ -45,7 +45,7 @@ public class Liste {
     public String printFromHead() {
         String output = "";
         Node n = head;
-        while(n != null){
+        while (n != null) {
             output += n.data;
             n = n.next;
         }
@@ -56,7 +56,7 @@ public class Liste {
     public String printFromTail() {
         String output = "";
         Node n = tail;
-        while(n != null){
+        while (n != null) {
             output += n.data;
             n = n.previous;
         }
@@ -66,8 +66,8 @@ public class Liste {
 
     public Node removeFromHead() {
         Node node = new Node("");
-        if(!isEmpty()){
-            if(head == tail){
+        if (!isEmpty()) {
+            if (head == tail) {
                 node = head;
                 head = null;
                 tail = null;
@@ -75,11 +75,67 @@ public class Liste {
             }
             node = head;
 
-            head.next.previous = null;
             head = head.next;
+
+            head.previous.next = null;
+
+            head.previous = null;
 
             return node;
         }
         return node;
+    }
+
+    public Node removeFromTail() {
+        Node node = new Node("");
+        if (!isEmpty()) {
+            if (head == tail) {
+                node = tail;
+                head = null;
+                tail = null;
+                return node;
+            }
+            node = tail;
+
+            tail = tail.previous;
+
+            tail.next.previous = null;
+
+            tail.next = null;
+
+            return node;
+        }
+        return node;
+    }
+
+
+
+    public Node findNodeByData(String s) {
+        Node n = head;
+        while (n != null) {
+            if(n.data == s){
+                return n;
+            }
+            n = n.next;
+        }
+        return n;
+    }
+
+    public Node removeNodeFromList(Node n) {
+        Node removedNode = n;
+        if(n == head){
+            return removeFromHead();
+        }
+        if(n == tail){
+            return removeFromTail();
+        }
+
+        n.previous.next = n.next;
+        n.next.previous = n.previous;
+        return removedNode;
+    }
+
+    public Node insertNodeToList(Node oldNode, Node newNode) {
+
     }
 }

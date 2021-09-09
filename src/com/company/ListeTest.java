@@ -16,13 +16,20 @@ class ListeTest {
         Node node1 = new Node("1");
         Node node2 = new Node("2");
         Node node3 = new Node("3");
+        Node node4 = new Node("4");
+        Node node5 = new Node("5");
+        Node node6 = new Node("6");
+        Node node7 = new Node("7");
 
         liste.insertFromHead(node0);
         liste.insertFromHead(node1);
         liste.insertFromHead(node2);
         liste.insertFromHead(node3);
+        liste.insertFromHead(node4);
+        liste.insertFromHead(node5);
+        liste.insertFromHead(node6);
+        liste.insertFromHead(node7);
     }
-
 
 
     @org.junit.jupiter.api.Test
@@ -60,7 +67,7 @@ class ListeTest {
     @Test
     void removeFromHeadTest() {
         assertEquals("3", liste.removeFromHead().data);
-        assertEquals("210",liste.printFromHead());
+        assertEquals("210", liste.printFromHead());
 //        Node node = new Node("");
 //
 //        assertEquals(node.data, listeTom.removeFromHead().data);
@@ -68,5 +75,24 @@ class ListeTest {
 //        Node testNode = new Node("4");
 //        liste.insertFromHead(testNode);
 //        assertEquals(testNode, listeTom.removeFromHead());
+    }
+
+    @Test
+    void findNodeTest() {
+        assertEquals("2", liste.findNodeByData("2").data);
+    }
+
+    @Test
+    void removeNode() {
+        System.out.println(liste.printFromHead());
+        assertEquals("4", liste.removeNodeFromList(liste.findNodeByData("4")).data);
+        System.out.println(liste.printFromHead());
+    }
+
+    @Test
+    void insertNode() {
+        System.out.println(liste.printFromHead());
+        assertEquals("4", liste.insertNodeToList(liste.findNodeByData("5"), new Node("8")).data);
+        System.out.println(liste.printFromHead());
     }
 }
